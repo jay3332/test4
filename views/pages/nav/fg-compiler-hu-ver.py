@@ -15,9 +15,7 @@ def splitUpStr(s, indices):
 	return [s[i:j] for i, j in zip(indices, indices[1:] + [None])]
 
 def genRandom(count, cap):
-	randoms = []
-	for x in range(0, count):
-		randoms.append(random.randint(1, cap - 1))
+	randoms = [random.randint(1, cap - 1) for _ in range(count)]
 	randoms.sort()
 	return randoms
 
@@ -26,7 +24,7 @@ def insertBreaks(s):
 	return breaker.join(splitUpStr(s, genRandom(math.ceil(length / breakerFrequency), length)))
 
 # Generate HTML code for flash list
-for x in range(0, len(flash_1)):
+for x in range(len(flash_1)):
 	flash_2.append(alist % insertBreaks(os.path.splitext(flash_1[x])[0].capitalize()))
 
 # Write to list file
